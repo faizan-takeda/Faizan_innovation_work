@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Vision for Takeda — Cure for Every One</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --crimson: #C41E3A;
+    --crimson-dark: #8B0000;
+    --gold: #D4A84B;
+    --ink: #1A1A2E;
+    --paper: #FAF7F2;
+    --slate: #4A4A5A;
+    --light-gold: rgba(212,168,75,0.12);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    background: var(--ink);
+    color: var(--paper);
+    overflow-x: hidden;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+    background: radial-gradient(ellipse at 30% 50%, rgba(196,30,58,0.15) 0%, transparent 60%),
+                radial-gradient(ellipse at 70% 80%, rgba(212,168,75,0.1) 0%, transparent 50%),
+                var(--ink);
+    position: relative;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23D4A84B' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    opacity: 0.5;
+  }
+
+  .hero-tag {
+    font-family: 'Source Sans 3', sans-serif;
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeUp 1s 0.3s forwards;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    line-height: 1.1;
+    max-width: 900px;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 1s 0.6s forwards;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--crimson);
+  }
+
+  .hero-sub {
+    font-size: 1.25rem;
+    font-weight: 300;
+    color: rgba(250,247,242,0.7);
+    max-width: 600px;
+    line-height: 1.7;
+    opacity: 0;
+    animation: fadeUp 1s 0.9s forwards;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 2rem;
+    font-size: 0.75rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0;
+    animation: fadeUp 1s 1.2s forwards, pulse 2s 2s infinite;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+  }
+
+  /* SECTIONS */
+  section {
+    padding: 6rem 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-weight: 700;
+    font-size: 0.7rem;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    line-height: 1.2;
+    margin-bottom: 2rem;
+  }
+
+  h2 em { color: var(--crimson); font-style: italic; }
+
+  p.body-text {
+    font-size: 1.1rem;
+    line-height: 1.85;
+    color: rgba(250,247,242,0.8);
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+  }
+
+  p.body-text strong {
+    color: var(--paper);
+    font-weight: 600;
+  }
+
+  /* STAT BLOCKS */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin: 3rem 0;
+  }
+
+  .stat-card {
+    background: rgba(250,247,242,0.04);
+    border: 1px solid rgba(212,168,75,0.15);
+    border-radius: 8px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    transition: transform 0.3s, border-color 0.3s;
+  }
+
+  .stat-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--gold);
+  }
+
+  .stat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--crimson);
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-label {
+    font-size: 0.85rem;
+    color: rgba(250,247,242,0.6);
+    line-height: 1.5;
+    font-weight: 400;
+  }
+
+  /* BIG QUOTE */
+  .big-quote {
+    border-left: 3px solid var(--crimson);
+    padding: 2rem 2.5rem;
+    margin: 3rem 0;
+    background: rgba(196,30,58,0.05);
+    border-radius: 0 8px 8px 0;
+  }
+
+  .big-quote p {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.7;
+    color: var(--paper);
+  }
+
+  /* ANALOGY SECTION */
+  .analogy-box {
+    background: linear-gradient(135deg, rgba(212,168,75,0.08) 0%, rgba(196,30,58,0.08) 100%);
+    border: 1px solid rgba(212,168,75,0.2);
+    border-radius: 12px;
+    padding: 3rem;
+    margin: 3rem 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .analogy-box::after {
+    content: '⟶';
+    position: absolute;
+    right: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 4rem;
+    color: rgba(212,168,75,0.1);
+  }
+
+  .analogy-header {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+
+  .analogy-row {
+    display: flex;
+    gap: 2rem;
+    margin: 1.5rem 0;
+    flex-wrap: wrap;
+  }
+
+  .analogy-then, .analogy-now {
+    flex: 1;
+    min-width: 250px;
+    padding: 1.5rem;
+    border-radius: 8px;
+  }
+
+  .analogy-then {
+    background: rgba(250,247,242,0.03);
+    border: 1px solid rgba(250,247,242,0.08);
+  }
+
+  .analogy-now {
+    background: rgba(196,30,58,0.08);
+    border: 1px solid rgba(196,30,58,0.2);
+  }
+
+  .analogy-then h4, .analogy-now h4 {
+    font-size: 0.7rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+  }
+
+  .analogy-then h4 { color: rgba(250,247,242,0.4); }
+  .analogy-now h4 { color: var(--crimson); }
+
+  .analogy-then p, .analogy-now p {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: rgba(250,247,242,0.75);
+  }
+
+  .analogy-now p { color: rgba(250,247,242,0.9); }
+
+  /* DIVIDER */
+  .divider {
+    width: 60px;
+    height: 2px;
+    background: var(--gold);
+    margin: 4rem auto;
+  }
+
+  /* TAKEDA SECTION */
+  .proof-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin: 3rem 0;
+  }
+
+  .proof-card {
+    padding: 2rem;
+    border-radius: 10px;
+    background: rgba(250,247,242,0.03);
+    border: 1px solid rgba(250,247,242,0.06);
+  }
+
+  .proof-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: var(--gold);
+  }
+
+  .proof-card p {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: rgba(250,247,242,0.65);
+  }
+
+  /* SUFFERING STATS */
+  .suffering-list {
+    margin: 2.5rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+
+  .suffering-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.2rem 1.5rem;
+    background: rgba(196,30,58,0.04);
+    border-left: 3px solid var(--crimson);
+    border-radius: 0 8px 8px 0;
+  }
+
+  .suffering-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+  }
+
+  .suffering-text {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: rgba(250,247,242,0.85);
+  }
+
+  .suffering-text strong { color: var(--crimson); font-weight: 700; }
+
+  /* VISION SECTION */
+  .vision-section {
+    background: linear-gradient(180deg, var(--ink) 0%, rgba(196,30,58,0.08) 50%, var(--ink) 100%);
+    text-align: center;
+    padding: 6rem 2rem;
+  }
+
+  .vision-section h2 {
+    max-width: 800px;
+    margin: 0 auto 2rem;
+  }
+
+  .vision-section p.body-text {
+    max-width: 700px;
+    margin: 0 auto 1.5rem;
+    text-align: center;
+  }
+
+  /* MARKET OPP */
+  .market-bar {
+    margin: 3rem 0;
+    padding: 2rem;
+  }
+
+  .bar-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: rgba(250,247,242,0.5);
+    margin-bottom: 0.5rem;
+  }
+
+  .bar-track {
+    height: 40px;
+    background: rgba(250,247,242,0.05);
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .bar-fill {
+    position: absolute;
+    top: 0; left: 0; bottom: 0;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: var(--paper);
+  }
+
+  .bar-fill.current {
+    width: 5%;
+    background: var(--crimson);
+    min-width: 60px;
+  }
+
+  .bar-fill.potential {
+    width: 100%;
+    background: linear-gradient(90deg, var(--crimson) 5%, rgba(212,168,75,0.3) 5%, rgba(212,168,75,0.15) 100%);
+    justify-content: flex-end;
+    padding-right: 1rem;
+  }
+
+  .bar-caption {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: rgba(250,247,242,0.5);
+    text-align: center;
+    font-style: italic;
+  }
+
+  /* TIMELINE */
+  .timeline {
+    position: relative;
+    margin: 3rem 0;
+    padding-left: 2.5rem;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 8px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, var(--crimson), var(--gold));
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 2rem;
+    padding-left: 1rem;
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -2.5rem;
+    top: 6px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--crimson);
+    border: 2px solid var(--ink);
+  }
+
+  .timeline-year {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 0.3rem;
+  }
+
+  .timeline-text {
+    font-size: 0.95rem;
+    color: rgba(250,247,242,0.7);
+    line-height: 1.6;
+  }
+
+  /* CTA */
+  .cta-section {
+    text-align: center;
+    padding: 6rem 2rem 4rem;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .cta-section h2 {
+    margin-bottom: 1.5rem;
+  }
+
+  .cta-final {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-style: italic;
+    color: var(--gold);
+    margin-top: 3rem;
+    line-height: 1.6;
+  }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 3rem 2rem;
+    font-size: 0.75rem;
+    color: rgba(250,247,242,0.3);
+    border-top: 1px solid rgba(250,247,242,0.05);
+  }
+
+  @media (max-width: 600px) {
+    section { padding: 4rem 1.5rem; }
+    .analogy-box { padding: 2rem 1.5rem; }
+    .stat-grid { grid-template-columns: 1fr 1fr; }
+    .stat-number { font-size: 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ==================== HERO ==================== -->
+<div class="hero">
+  <div class="hero-tag">A Strategic Vision for Takeda Pharmaceutical</div>
+  <h1>Bring the Cure to <em>Every One.</em></h1>
+  <p class="hero-sub">300 million people suffer from rare diseases. 95% have no approved treatment. The world's third-largest population invisible, waiting, dying. This is both a moral calling and the greatest untapped market in pharmaceutical history.</p>
+  <div class="scroll-hint">↓ &nbsp; Scroll to explore the case &nbsp; ↓</div>
+</div>
+
+<!-- ==================== THE SCALE OF SUFFERING ==================== -->
+<section>
+  <div class="section-label">Part I — The Scale of Suffering</div>
+  <h2>Rare Diseases Are <em>Not Rare.</em><br>The Suffering Is <em>Invisible.</em></h2>
+
+  <p class="body-text">We call them "rare" but together, they affect more humans than the entire population of the United States. <strong>Over 300 million people worldwide</strong> are living with one of the 7,000+ identified rare diseases. When you include their families and carers, that number crosses <strong>1 billion lives</strong> impacted.</p>
+
+  <p class="body-text">And yet, 95% of these diseases have <strong>zero approved treatments.</strong> Not one pill. Not one therapy. Nothing. These aren't small numbers in some statistical footnote — this is a humanitarian catastrophe hiding in plain sight.</p>
+
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div class="stat-number">300M+</div>
+      <div class="stat-label">People living with a rare disease worldwide — equal to the entire US population</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">7,000+</div>
+      <div class="stat-label">Distinct rare diseases identified. New ones discovered regularly.</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">95%</div>
+      <div class="stat-label">Of rare diseases have NO approved treatment. Zero hope on paper.</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">~5 yrs</div>
+      <div class="stat-label">Average time for a patient to even get a correct diagnosis</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">72%</div>
+      <div class="stat-label">Of rare diseases are genetic in origin — 70% begin in childhood</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">30%</div>
+      <div class="stat-label">Of children with rare diseases die before their 5th birthday</div>
+    </div>
+  </div>
+
+  <div class="big-quote">
+    <p>"Collectively, rare diseases are not rare. They represent a large proportion of the population yet they remain the health orphans of the world."</p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ==================== THE ANALOGY ==================== -->
+<section>
+  <div class="section-label">Part II — The Most Powerful Proof That "Impossible" Is Temporary</div>
+  <h2>15 Years Ago, No One Could Imagine<br><em>Money Moving Without Banks.</em></h2>
+
+  <p class="body-text">Consider what India's UPI (Unified Payments Interface) has done to the world of financial access. This isn't theory. This is the most dramatic expansion of a system's reach in human history. And it happened in less than a decade.</p>
+
+  <div class="analogy-box">
+    <div class="analogy-header">🇮🇳 India's UPI: From Zero to Global #1 in 9 Years</div>
+    <div class="analogy-row">
+      <div class="analogy-then">
+        <h4>August 2016</h4>
+        <p><strong>93,000 transactions</strong> in the entire month. Only 35 banks supported it. Regulated, slow, controlled by legacy systems. Cash was king. Less than 6 non-cash transactions per person per year. The idea that a vegetable vendor or a street-side chai stall could accept digital payments was fantasy.</p>
+      </div>
+      <div class="analogy-now">
+        <h4>August 2025</h4>
+        <p><strong>20 BILLION transactions</strong> in a single month. 641 banks live. ₹24.85 lakh crore processed. UPI now handles <strong>more daily transactions than Visa globally</strong> — 640+ million per day. 84% of India's digital payments. Active in 7 countries. 49% of the world's entire real-time payment volume. The vegetable vendor now says, "UPI kar do."</p>
+      </div>
+    </div>
+  </div>
+
+  <p class="body-text">Think about this: <strong>from 93,000 transactions to 20,000,000,000 per month.</strong> That's not 10x growth. That's not 100x. That's over <strong>200,000x growth in 9 years.</strong></p>
+
+  <p class="body-text">Banking was once dominated by physical branches, plastic cards, long queues, and gatekeepers. The idea that a farmer in a remote Indian village could send money with a fingerprint seemed absurd. Today, <strong>among households earning less than ₹2 lakh annually, digital payment usage jumped from 12% in 2016 to 78% in 2024</strong> almost entirely because of UPI.</p>
+
+  <p class="body-text">The same revolution happened with smartphones. In 2010, only about 300 million people had smartphones. Today, <strong>5.78 billion people carry one</strong> a device more powerful than the computers that sent humans to the moon. The smartphone didn't just become cheaper; the entire ecosystem was redesigned for universal reach.</p>
+
+  <div class="big-quote">
+    <p>If a country of 1.4 billion people can go from cash-only to the world's #1 digital payment system in under 10 years why can't we build a system that delivers cures to every rare disease patient on Earth in the next 10?</p>
+  </div>
+
+  <p class="body-text">The parallel is exact. Replace "financial access" with "therapeutic access." Replace "bank branches" with "specialist hospitals." Replace "cash" with "no diagnosis." The infrastructure for universal cure delivery is not a dream it's an engineering problem. And engineering problems have solutions.</p>
+</section>
+
+<div class="divider"></div>
+
+<!-- ==================== TAKEDA TODAY ==================== -->
+<section>
+  <div class="section-label">Part III — Where Takeda Stands Today</div>
+  <h2>$30 Billion In Revenue.<br>And We're Reaching <em>A Fraction</em> of Who Needs Us.</h2>
+
+  <p class="body-text">Takeda is Japan's largest pharmaceutical company and one of the top 20 globally. With ~$30 billion in annual revenue, a market capitalization of ~$57–58 billion, and rare diseases as one of its five core therapeutic pillars — Takeda is already a giant in this space.</p>
+
+  <p class="body-text">But here's the uncomfortable truth we must face:</p>
+
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div class="stat-number">~$30B</div>
+      <div class="stat-label">Takeda's annual revenue (FY2024–25) — built on serving a small fraction of the total addressable population</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">~$58B</div>
+      <div class="stat-label">Market capitalization as of April 2026 — grown 19.5% in one year</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">~5%</div>
+      <div class="stat-label">Of rare diseases that have ANY approved treatment. We're fighting on 5% of the battlefield.</div>
+    </div>
+  </div>
+
+  <div class="proof-grid">
+    <div class="proof-card">
+      <h3>TAKHZYRO — Proof of What's Possible</h3>
+      <p>Takeda's hereditary angioedema treatment has shown explosive double-digit growth, launching in 50+ countries. It proves that when a rare disease therapy reaches patients, demand is enormous and sustained.</p>
+    </div>
+    <div class="proof-card">
+      <h3>Growth & Launch Portfolio: 52% of Revenue</h3>
+      <p>Takeda's innovative biologics and niche therapies now account for more than half of total revenue, showing the market rewards companies that solve unmet medical needs — not just high-volume conditions.</p>
+    </div>
+  
+    
+  </div>
+
+  <div class="market-bar">
+    <div class="bar-label">
+      <span>Rare diseases WITH treatment (~5%)</span>
+      <span>Rare diseases WITHOUT any treatment (~95%)</span>
+    </div>
+    <div class="bar-track">
+      <div class="bar-fill potential">← 95% untouched market opportunity</div>
+      <div class="bar-fill current">5%</div>
+    </div>
+    <div class="bar-caption">Takeda's $30B revenue comes from serving a sliver of a fraction. The whitespace is staggering.</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ==================== THE MARKET CASE ==================== -->
+<section>
+  <div class="section-label">Part IV — The Business Case Is Irrefutable</div>
+  <h2>This Isn't Charity.<br>It's the Biggest Care for our Family and <em>Growth Opportunity</em> in Pharma.</h2>
+
+  <p class="body-text">The global orphan drug market is projected to grow from approximately <strong>$217 billion in 2025 to over $610 billion by 2034</strong>, expanding at a compound annual growth rate of 12.2%. That growth rate consistently outpaces the overall pharmaceutical market (7.5% CAGR for non-orphan drugs).</p>
+
+  <p class="body-text">Orphan drugs are projected to represent <strong>21% of all global prescription drug sales by 2032</strong> — their share has doubled in just one decade. This isn't a niche anymore. This is becoming the center of pharma.</p>
+
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div class="stat-number">$610B+</div>
+      <div class="stat-label">Projected orphan drug market by 2034 — nearly 3x today's size</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">12.2%</div>
+      <div class="stat-label">Annual growth rate of orphan drugs — outpacing mainstream pharma by 60%</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">21%</div>
+      <div class="stat-label">Of ALL global Rx sales by 2032 will be orphan drugs — up from ~10% a decade ago</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">50%+</div>
+      <div class="stat-label">Of new FDA drug approvals over the past 5 years have been orphan drugs</div>
+    </div>
+  </div>
+
+  <p class="body-text">Consider: <strong>Over 50% of all new FDA drug approvals in recent years have been orphan drugs.</strong> Regulators are actively incentivizing this space with market exclusivity, tax credits, reduced fees, and accelerated review pathways. The system is designed to reward companies who dare to solve rare disease.</p>
+
+  <p class="body-text">And the most powerful proof? <strong>Gene therapies are now turning lifetime treatment regimens into single-dose cures.</strong> Fifteen gene therapies gained FDA approval in 2024–2025 alone. The cost of genome sequencing has fallen 99% in 15 years. AI is identifying drug targets in months, not decades. The tools exist. The economics work. The regulatory winds are favorable.</p>
+</section>
+
+<div class="divider"></div>
+
+<!-- ==================== THE VISION ==================== -->
+<div class="vision-section">
+  <div class="section-label">Part V — The 10-Year Vision</div>
+  <h2>By 2036, We Build the System<br>That <em>Reaches Every One.</em></h2>
+
+  <p class="body-text">Just as UPI built the infrastructure that made financial access universal — we can build the infrastructure that makes therapeutic access universal. This means rethinking everything:</p>
+
+</div>
+
+<div class="divider"></div>
+
+<!-- ==================== CLOSING ==================== -->
+<div class="cta-section">
+  <div class="section-label">The Ask</div>
+  <h2>Purpose <em>and</em> Profit Are Not Opposites.<br>They Are <em>Multipliers.</em></h2>
+
+  <p class="body-text" style="text-align: center;">Every data point tells the same story: the companies that expanded access — that built for universal reach — didn't just do good. They captured markets that were previously invisible.</p>
+
+  <p class="body-text" style="text-align: center;">UPI didn't just bank the unbanked. It created a <strong>$3.4 trillion annual transaction ecosystem</strong> that didn't exist before. Smartphones didn't just connect the connected. They created a <strong>$600 billion annual device market</strong> from nothing.</p>
+
+  <p class="body-text" style="text-align: center;">Takeda sits on the edge of the same transformation. <strong>$30 billion in revenue from 5% of the battlefield.</strong> Imagine what happens when we reach the other 95%.</p>
+
+  <p class="cta-final">"My aim is that in the next 10 years, we build the system to reach every one to bring cure to every one at the right time. Not because we can afford to. Because we can't afford not to."</p>
+
+  <div style="margin-top: 3rem;">
+    <div style="font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem;">The numbers demand action</div>
+    <div style="display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; color: rgba(250,247,242,0.5); font-size: 0.9rem;">
+      <div><strong style="color: var(--crimson); font-size: 1.3rem;">300M</strong><br>patients waiting</div>
+      <div><strong style="color: var(--crimson); font-size: 1.3rem;">$610B</strong><br>market by 2034</div>
+      <div><strong style="color: var(--crimson); font-size: 1.3rem;">95%</strong><br>diseases untreated</div>
+      <div><strong style="color: var(--crimson); font-size: 1.3rem;">10 yrs</strong><br>to change everything</div>
+    </div>
+  </div>
+</div>
+
+<div style="text-align:center;padding:2rem;">
+  <a href="index.html" style="display:inline-flex;align-items:center;gap:0.7rem;padding:0.8rem 2rem;border-radius:40px;background:rgba(196,30,58,0.1);border:1px solid rgba(196,30,58,0.3);color:#FAF7F2;text-decoration:none;font-size:0.8rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;transition:all 0.4s;">
+    &#8592; Back to the 6 Questions
+  </a>
+</div>
+
+<footer>
+  Prepared with purpose. All statistics sourced from Orphanet, The Lancet, NPCI, IMF, Evaluate, WHO, NIH, and public financial disclosures.<br>
+  Data current as of April 2026.
+</footer>
+
+</body>
+</html>
